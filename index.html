@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Recipe Finder</title>
+</head>
+
+<body>
+<nav class="navbar">
+    <ul>
+        <li><a href="#" onclick="searchCategory('Dessert')">Dessert</a></li>
+        <li><a href="#" onclick="searchCategory('Chicken')">Chicken</a></li>
+        <li><a href="#" onclick="searchCategory('Beef')">Beef</a></li>
+        <li><a href="#" onclick="searchCategory('Vegetarian')">Vegetarian</a></li>
+        <li><a href="#" onclick="searchCategory('Seafood')">Seafood</a></li>
+        <li><a href="#" onclick="searchCategory('Pasta')">Pasta</a></li>
+        <li><a href="#favorites" onclick="document.getElementById('favorites').scrollIntoView({behavior:'smooth'});return false;" style="color:#e52e71;font-weight:700;">&#9829; Favorites</a></li>
+    </ul>
+</nav>
+<div class="container">
+<h2>Recipe Finder</h2>
+<p>"Find the perfect recipe,anytime,anywhere ."</p>
+<div class="searchBox">
+<input type="text" id="searchInput" placeholder="Search for recipes...">
+<button  onclick ="searchRecipes()" id="searchButton">Search</button>
+</div>
+
+<button id="darkModeToggle" style="position:fixed;top:20px;right:20px;z-index:1000;padding:10px 20px;border-radius:20px;border:none;background:#222;color:#fff;cursor:pointer;">Dark Mode</button>
+
+</div>
+<div class="recipes" id="recipes"></div>
+<div id="favorites" class="favorites-section"></div>
+<div class="notFound" id="notFound" style="border-radius:18px;border:2px solid #e52e71;background:#fff8fa;padding:12px 24px;box-shadow:0 2px 8px rgba(229,46,113,0.08);max-width:320px;margin:24px auto;">Search Your Favorite recipes !</div>
+</div>
+<!-- Recipe Modal -->
+<div id="recipeModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div>
+        &copy; 2025 Recipe Finder. All rights reserved. | Made with &hearts; for food lovers
+        <br>
+        <a href="#" style="color:#ffd700;margin:0 10px;text-decoration:none;">About</a>
+        <a href="#" style="color:#ffd700;margin:0 10px;text-decoration:none;">Contact</a>
+        <a href="#" style="color:#ffd700;margin:0 10px;text-decoration:none;">Privacy Policy</a>
+        <a href="#" style="color:#ffd700;margin:0 10px;text-decoration:none;">Terms</a>
+        <br>
+    </div>
+</footer>
+
+
+    <script src="script.js"></script>
+        <script>
+        // Dark mode toggle
+        const darkModeBtn = document.getElementById('darkModeToggle');
+        darkModeBtn.addEventListener('click', function() {
+            document.body.classList.toggle('darkmode');
+            if(document.body.classList.contains('darkmode')) {
+                darkModeBtn.textContent = 'Light Mode';
+            } else {
+                darkModeBtn.textContent = 'Dark Mode';
+            }
+        });
+
+        // Background image slider
+        const container = document.querySelector('.container');
+        const images = [
+                 'image.jpg',
+                 'https://images.unsplash.com/photo-1504674900247-0877df9cc836', // Pasta
+                 'https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg',
+                 'https://static.vecteezy.com/system/resources/previews/033/255/791/non_2x/thai-food-som-tum-spicy-green-papaya-salad-top-view-ai-generated-photo.jpg',
+                 'https://i.pinimg.com/originals/e0/32/8b/e0328bbce1e96b6cf147000dca35d4a9.jpg',
+                 
+        ];
+        let current = 0;
+        container.style.transition = 'background 1s linear';
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            container.style.background = `url(${images[current]}) center center/cover no-repeat`;
+        }, 2000);
+        </script>
+        <!-- Removed duplicate darkModeBtn script to fix redeclaration error -->
+</body>
+
+
+</html>
